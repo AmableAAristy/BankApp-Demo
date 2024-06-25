@@ -1,14 +1,14 @@
 //
-//  GroupProjectApp.swift
-//  GroupProject
+//  BankAppApp.swift
+//  BankApp
 //
-//  Created by Amable A Aristy  on 6/24/24.
+//  Created by Amable A Aristy  on 6/25/24.
 //
 
 import SwiftUI
 
 @main
-struct GroupProjectApp: App {
+struct BankAppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()

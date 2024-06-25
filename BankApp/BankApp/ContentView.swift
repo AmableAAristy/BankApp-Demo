@@ -1,8 +1,8 @@
 //
 //  ContentView.swift
-//  GroupProject
+//  BankApp
 //
-//  Created by Amable A Aristy  on 6/24/24.
+//  Created by Amable A Aristy  on 6/25/24.
 //
 
 import SwiftUI
