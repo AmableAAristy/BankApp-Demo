@@ -12,8 +12,8 @@ struct SingleStockView: View {
     @StateObject private var serverConnection = ServerConnection()
     @State private var openInfo = false
     let stockName: String
-    @State private var length:String = "5d"
-    let dates: [String] = ["1d", "5d", "1mo", "3mo", "6mo", "1y", "2y", "5y", "10y", "ytd", "max"]
+    @State private var length:String = "1mo"
+    let dates: [String] = ["5d", "1mo", "3mo", "1y", "5y", "ytd"]
     
     var body: some View {
         VStack {
@@ -23,14 +23,18 @@ struct SingleStockView: View {
                 ForEach(Array(serverConnection.bothPrices.enumerated()), id: \.offset) { index, price in
                     LineMark(
                         x: .value("Index", index),
-                        y: .value("Open", price.open)
+                        y: .value("Open", price.0)
                     )
-                    .foregroundStyle(Color.blue)
-                    .symbol(Circle())
                     .interpolationMethod(.catmullRom)
                     
+                    LineMark(
+                        x: .value("Index", index),
+                        y: .value("Close", price.1)
+                    )
+                    .interpolationMethod(.catmullRom)
                 }
             }
+            .foregroundStyle(serverConnection.bothPrices.first?.0 ?? 0 <= serverConnection.bothPrices.last?.1 ?? 0 ? Color.green : Color.red)
             .chartYScale(domain: yAxisRange())
             .frame(height: 200)
             .padding()
@@ -47,8 +51,7 @@ struct SingleStockView: View {
             }
             
             
-            
-            
+
             List {
                 Section(header: Text("Open and Close Prices for \(stockName)")) {
                     DisclosureGroup("Info", isExpanded: $openInfo) {
