@@ -5,6 +5,7 @@ class ServerConnection: ObservableObject {
     @Published var closePrices: [Double] = []
     @Published var bothPrices: [(open: Double, close: Double)] = []
     @Published var dates: [String] = []
+    @Published var isLoading:Bool = true
     
     //right now we are only using the both. if we do not end up using any of the other ones we may remove them
     
@@ -180,6 +181,7 @@ class ServerConnection: ObservableObject {
                     DispatchQueue.main.async {
                         self?.bothPrices = zip(openPrices, closePrices).map { (open: $0, close: $1) }
                         self?.dates = dates
+                        self?.isLoading = false
                     }
   
                 } else {

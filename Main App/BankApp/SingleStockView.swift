@@ -18,6 +18,7 @@ struct SingleStockView: View {
 
     
     var body: some View {
+        
         let colorOfGraph = (serverConnection.bothPrices.first?.0 ?? 0 <= serverConnection.bothPrices.last?.1 ?? 0 ? Color.green : Color.red)
  
         VStack {
