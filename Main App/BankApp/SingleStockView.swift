@@ -13,12 +13,22 @@ struct SingleStockView: View {
     @State private var openInfo = false
     let stockName: String
     @State private var length:String = "1mo"
-    let dates: [String] = ["5d", "1mo", "3mo", "1y", "5y", "ytd"]
+    let lengthOfSearch: [String] = ["5d", "1mo", "3mo", "1y", "5y", "ytd"]
+    
+
     
     var body: some View {
+        let colorOfGraph = (serverConnection.bothPrices.first?.0 ?? 0 <= serverConnection.bothPrices.last?.1 ?? 0 ? Color.green : Color.red)
+ 
         VStack {
+                                               
             Text("\(stockName)")
+            if serverConnection.dates.count > 0 {
+                Text("Dates: \(serverConnection.dates.first ?? "\(length)") - \(serverConnection.dates.last ?? "")")
+                    
+            }
             
+                
             Chart {
                 ForEach(Array(serverConnection.bothPrices.enumerated()), id: \.offset) { index, price in
                     LineMark(
@@ -34,14 +44,14 @@ struct SingleStockView: View {
                     .interpolationMethod(.catmullRom)
                 }
             }
-            .foregroundStyle(serverConnection.bothPrices.first?.0 ?? 0 <= serverConnection.bothPrices.last?.1 ?? 0 ? Color.green : Color.red)
+            .foregroundStyle(colorOfGraph)
             .chartYScale(domain: yAxisRange())
             .frame(height: 200)
             .padding()
             
             
             HStack{
-                ForEach(dates, id: \.self) {
+                ForEach(lengthOfSearch, id: \.self) {
                     date in
                     Button(action:{ length = date}){
                         Text(date)
@@ -55,11 +65,23 @@ struct SingleStockView: View {
             List {
                 Section(header: Text("Open and Close Prices for \(stockName)")) {
                     DisclosureGroup("Info", isExpanded: $openInfo) {
-                        ForEach(serverConnection.bothPrices, id: \.open) { price in
+                        HStack{ //someone make this prettier please its not alligned
+                            Text("Date")
+                            Spacer()
+                            Text("Open")
+                            Spacer()
+                            Text("Close")
+                        }
+                        ForEach(Array(serverConnection.bothPrices.enumerated()), id: \.offset) { index, price in
                             HStack {
-                                Text("Open: \(price.open, specifier: "%.2f")")
-                                Spacer()
-                                Text("Close: \(price.close, specifier: "%.2f")")
+
+                                    Text(" \(serverConnection.dates[index])")
+                                    Spacer()
+                                    Text("\(price.open, specifier: "%.2f")")
+                                    Spacer()
+                                    Text("\(price.close, specifier: "%.2f")")
+                                    
+                                
                             }
                         }
                     }
@@ -86,6 +108,6 @@ struct SingleStockView: View {
 }
 
 #Preview {
-    SingleStockView(stockName: "FORD")
+    SingleStockView(stockName: "AMD")
 }
 

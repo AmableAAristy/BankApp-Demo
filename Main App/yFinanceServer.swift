@@ -4,6 +4,7 @@ class ServerConnection: ObservableObject {
     @Published var openPrices: [Double] = []
     @Published var closePrices: [Double] = []
     @Published var bothPrices: [(open: Double, close: Double)] = []
+    @Published var dates: [String] = []
     
     //right now we are only using the both. if we do not end up using any of the other ones we may remove them
     
@@ -173,12 +174,14 @@ class ServerConnection: ObservableObject {
             
             do {
                 if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let dates = json["dates"] as? [String],
                    let openPrices = json["open_prices"] as? [Double],
                    let closePrices = json["close_prices"] as? [Double] {
                     DispatchQueue.main.async {
                         self?.bothPrices = zip(openPrices, closePrices).map { (open: $0, close: $1) }
-                    
+                        self?.dates = dates
                     }
+  
                 } else {
                     print("Invalid response data")
                 }
@@ -189,4 +192,5 @@ class ServerConnection: ObservableObject {
         
         task.resume()
     }
+    
 }

@@ -77,13 +77,16 @@ def get_both_info():
 
     hist = ticker.history(period=lengthOfRequest)
 
+    hist.reset_index(inplace=True)
 
-
+    
+    date = hist['Date'].dt.strftime('%Y-%m-%d').tolist()
     open_prices = hist['Open'].tolist()
     close_prices = hist['Close'].tolist()
     
 
     prices_dict = {
+        "date" : date,
         "open_prices": open_prices,
         "close_prices": close_prices
     }
