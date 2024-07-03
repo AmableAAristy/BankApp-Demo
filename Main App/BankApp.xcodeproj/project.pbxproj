@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E90DBFDC2C359D4F002A3C85 /* loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90DBFDB2C359D4F002A3C85 /* loading.swift */; };
+		E90DBFDE2C35A158002A3C85 /* pedro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E90DBFDD2C35A158002A3C85 /* pedro.mp4 */; };
 		E93FB2E52C2B70F100CEBA6E /* BankAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FB2E42C2B70F100CEBA6E /* BankAppApp.swift */; };
 		E93FB2E72C2B70F100CEBA6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FB2E62C2B70F100CEBA6E /* ContentView.swift */; };
 		E93FB2E92C2B70F200CEBA6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E93FB2E82C2B70F200CEBA6E /* Assets.xcassets */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E90DBFDB2C359D4F002A3C85 /* loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loading.swift; sourceTree = "<group>"; };
+		E90DBFDD2C35A158002A3C85 /* pedro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pedro.mp4; sourceTree = "<group>"; };
 		E93FB2E12C2B70F100CEBA6E /* BankApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E93FB2E42C2B70F100CEBA6E /* BankAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAppApp.swift; sourceTree = "<group>"; };
 		E93FB2E62C2B70F100CEBA6E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -57,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				E99DB4432C32DF9700E3A9B9 /* ticker.txt */,
+				E90DBFDD2C35A158002A3C85 /* pedro.mp4 */,
+				E90DBFDB2C359D4F002A3C85 /* loading.swift */,
 				E94917372C3442B0003BD976 /* GoogleService-Info.plist */,
 				E99DB4472C32EFE500E3A9B9 /* yFinanceServer.swift */,
 				E99DB4512C33AFCE00E3A9B9 /* Secret.json */,
@@ -164,6 +170,7 @@
 			files = (
 				E93FB2EC2C2B70F200CEBA6E /* Preview Assets.xcassets in Resources */,
 				E99DB4522C33AFCE00E3A9B9 /* Secret.json in Resources */,
+				E90DBFDE2C35A158002A3C85 /* pedro.mp4 in Resources */,
 				E94917382C3442B0003BD976 /* GoogleService-Info.plist in Resources */,
 				E93FB2E92C2B70F200CEBA6E /* Assets.xcassets in Resources */,
 				E99DB4442C32DF9700E3A9B9 /* ticker.txt in Resources */,
@@ -180,6 +187,7 @@
 				E99DB4422C32DF8E00E3A9B9 /* StockView.swift in Sources */,
 				E99DB44A2C32FC7F00E3A9B9 /* SingleStockView.swift in Sources */,
 				E99DB4482C32EFE500E3A9B9 /* yFinanceServer.swift in Sources */,
+				E90DBFDC2C359D4F002A3C85 /* loading.swift in Sources */,
 				E99DB4462C32E2AF00E3A9B9 /* Ticker.swift in Sources */,
 				E93FB2E72C2B70F100CEBA6E /* ContentView.swift in Sources */,
 				E93FB2E52C2B70F100CEBA6E /* BankAppApp.swift in Sources */,
