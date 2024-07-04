@@ -17,3 +17,5 @@ node_modules/
 firebase-debug.log
 
 Main App/GoogleService-Info.plist
+
+.DS_Store
