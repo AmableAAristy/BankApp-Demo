@@ -15,21 +15,21 @@ struct SingleStockView: View {
     @State private var length:String = "1mo"
     let lengthOfSearch: [String] = ["5d", "1mo", "3mo", "1y", "5y", "ytd"]
     
-
+    
     
     var body: some View {
         
         let colorOfGraph = (serverConnection.bothPrices.first?.0 ?? 0 <= serverConnection.bothPrices.last?.1 ?? 0 ? Color.green : Color.red)
- 
+        
         VStack {
-                                               
+            
             Text("\(stockName)")
             if serverConnection.dates.count > 0 {
                 Text("Dates: \(serverConnection.dates.first ?? "\(length)") - \(serverConnection.dates.last ?? "")")
-                    
+                
             }
             
-                
+            
             Chart {
                 ForEach(Array(serverConnection.bothPrices.enumerated()), id: \.offset) { index, price in
                     LineMark(
@@ -62,7 +62,7 @@ struct SingleStockView: View {
             }
             
             
-
+            
             List {
                 Section(header: Text("Open and Close Prices for \(stockName)")) {
                     DisclosureGroup("Info", isExpanded: $openInfo) {
@@ -75,13 +75,13 @@ struct SingleStockView: View {
                         }
                         ForEach(Array(serverConnection.bothPrices.enumerated()), id: \.offset) { index, price in
                             HStack {
-
-                                    Text(" \(serverConnection.dates[index])")
-                                    Spacer()
-                                    Text("\(price.open, specifier: "%.2f")")
-                                    Spacer()
-                                    Text("\(price.close, specifier: "%.2f")")
-                                    
+                                
+                                Text(" \(serverConnection.dates[index])")
+                                Spacer()
+                                Text("\(price.open, specifier: "%.2f")")
+                                Spacer()
+                                Text("\(price.close, specifier: "%.2f")")
+                                
                                 
                             }
                         }
@@ -94,7 +94,16 @@ struct SingleStockView: View {
             .onChange(of: length) { newLength in
                 serverConnection.fetchBothPrices(ticker: stockName, length: newLength)
             }
-        }
+        }.overlay(
+            Group {
+                if serverConnection.isLoading {
+                    VStack {
+                        Text("Now Loading.....")
+                        pedro
+                    }
+                }
+            }
+        )
     }
     //closedrange makes it so that it returns two different numbers basically since I am returning the bounds + 10% it is perfect
     private func yAxisRange() -> ClosedRange<Double> {
