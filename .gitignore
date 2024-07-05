@@ -19,27 +19,6 @@ firebase-debug.log
 Main App/GoogleService-Info.plist
 
 .DS_Store
-Main App/Secret.json
-
-# Firebase configuration files
-GoogleService-Info.plist
-google-services.json
-
-# Node modules
-node_modules/
-
-# Environment variables
-.env
-
-# Firebase CLI configuration
-.firebase/
-
-# Firebase debug log
-firebase-debug.log
-
-Main App/GoogleService-Info.plist
-
-.DS_Store
 
 BankingApp/BankingApp.xcodeproj/project.pbxproj
 BankingApp/BankingApp.xcodeproj/project.xcworkspace/contents.xcworkspacedata
