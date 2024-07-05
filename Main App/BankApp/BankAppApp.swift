@@ -7,9 +7,20 @@
 
 import SwiftUI
 
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
 @main
 struct BankAppApp: App {
+    
+
+    //this inits
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
+
+        
         WindowGroup {
             ContentView()
         }

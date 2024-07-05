@@ -59,6 +59,7 @@ struct StockView: View {
                         Text("Search")
                     }
                     
+                    
                 }//end Hstack
                 .padding()
             }//endVstack
