@@ -35,11 +35,12 @@ struct CreditView: View {
                 .padding()
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Button(action: {
-                addTransaction(company: company, price: cost)
-                // Clear the input fields
-                company = ""
-                costString = ""
-                fetchTransactions()
+                addTransaction(company: company, price: cost){
+                    // Clear the input fields
+                    company = ""
+                    costString = ""
+                    fetchTransactions()
+                }
             }) {
                 Text("Submit to database")
             }
@@ -57,12 +58,19 @@ struct CreditView: View {
         }
     }//end Vstack
     
-    func addTransaction(company: String, price: Double) {
+    func addTransaction(company: String, price: Double, completion: @escaping () -> Void) {
         
         let newTransaction = Transaction(company: company, price: price)
         
         do {
-            let _ = try db.collection("transactions").addDocument(from: newTransaction)
+            let _ = try db.collection("transactions").addDocument(from: newTransaction) { error in
+                if let error = error {
+                    print("Error writing transaction to Firestore: \(error)")
+                } else {
+                    //makes this an async, so app knows to pull after it is succeesfuly put in db
+                    completion()
+                }
+            }
         } catch let error {
             print("Error writing transaction to Firestore: \(error)")
         }
