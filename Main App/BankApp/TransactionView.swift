@@ -9,7 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
 
-struct CreditView: View {
+struct TransactionView: View {
     @State var company: String = ""
     @State var costString: String = ""
     @State private var transactions: [Transaction] = []
@@ -98,5 +98,5 @@ struct CreditView: View {
 
 
 #Preview {
-    CreditView()
+    TransactionView()
 }
