@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D87E58492C39F1FB005FC768 /* SubmitTransactionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87E58482C39F1FB005FC768 /* SubmitTransactionsView.swift */; };
 		D8816A382C39C08B008E8276 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99DB4412C32DF8E00E3A9B9 /* StockView.swift */; };
 		D8816A3A2C39C0C7008E8276 /* Secret.json in Resources */ = {isa = PBXBuildFile; fileRef = D8816A392C39C0C7008E8276 /* Secret.json */; };
 		D8816A3E2C39C20E008E8276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8816A3D2C39C20E008E8276 /* GoogleService-Info.plist */; };
@@ -33,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D87E58482C39F1FB005FC768 /* SubmitTransactionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmitTransactionsView.swift; sourceTree = "<group>"; };
 		D8816A392C39C0C7008E8276 /* Secret.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Secret.json; sourceTree = "<group>"; };
 		D8816A3D2C39C20E008E8276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E90DBFDB2C359D4F002A3C85 /* loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loading.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				E9193A4A2C3847DF0004CF89 /* HomeView.swift */,
 				E952EB062C381CE60051CEA9 /* SavingsView.swift */,
 				E952EB082C381D190051CEA9 /* TransactionView.swift */,
+				D87E58482C39F1FB005FC768 /* SubmitTransactionsView.swift */,
 				E99DB4412C32DF8E00E3A9B9 /* StockView.swift */,
 				E99DB4492C32FC7F00E3A9B9 /* SingleStockView.swift */,
 				E93FB2E82C2B70F200CEBA6E /* Assets.xcassets */,
@@ -213,6 +216,7 @@
 				E952EB072C381CE60051CEA9 /* SavingsView.swift in Sources */,
 				E9193A4B2C3847DF0004CF89 /* HomeView.swift in Sources */,
 				E99DB4482C32EFE500E3A9B9 /* yFinanceServer.swift in Sources */,
+				D87E58492C39F1FB005FC768 /* SubmitTransactionsView.swift in Sources */,
 				E90DBFDC2C359D4F002A3C85 /* loading.swift in Sources */,
 				E99DB4462C32E2AF00E3A9B9 /* Ticker.swift in Sources */,
 				D8816A382C39C08B008E8276 /* StockView.swift in Sources */,
