@@ -81,6 +81,7 @@
 				E90DBFDB2C359D4F002A3C85 /* loading.swift */,
 				E99DB4472C32EFE500E3A9B9 /* yFinanceServer.swift */,
 				E99DB4452C32E2AF00E3A9B9 /* Ticker.swift */,
+				D8816A392C39C0C7008E8276 /* Secret.json */,
 				E93FB2E32C2B70F100CEBA6E /* BankApp */,
 				E93FB2E22C2B70F100CEBA6E /* Products */,
 			);
@@ -98,7 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				E99DB4532C33B65E00E3A9B9 /* Info.plist */,
-				D8816A392C39C0C7008E8276 /* Secret.json */,
 				E93FB2E42C2B70F100CEBA6E /* BankAppApp.swift */,
 				E93FB2E62C2B70F100CEBA6E /* ContentView.swift */,
 				E9193A4C2C3847FD0004CF89 /* ProfileView.swift */,
