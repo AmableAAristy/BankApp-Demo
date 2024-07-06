@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		D8816A382C39C08B008E8276 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99DB4412C32DF8E00E3A9B9 /* StockView.swift */; };
 		D8816A3A2C39C0C7008E8276 /* Secret.json in Resources */ = {isa = PBXBuildFile; fileRef = D8816A392C39C0C7008E8276 /* Secret.json */; };
-		D8816A3C2C39C1AF008E8276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8816A3B2C39C1AF008E8276 /* GoogleService-Info.plist */; };
+		D8816A3E2C39C20E008E8276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8816A3D2C39C20E008E8276 /* GoogleService-Info.plist */; };
+		D8816A3F2C39C259008E8276 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FB2E62C2B70F100CEBA6E /* ContentView.swift */; };
 		E90DBFDC2C359D4F002A3C85 /* loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90DBFDB2C359D4F002A3C85 /* loading.swift */; };
 		E90DBFDE2C35A158002A3C85 /* pedro.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E90DBFDD2C35A158002A3C85 /* pedro.mp4 */; };
 		E9193A4B2C3847DF0004CF89 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9193A4A2C3847DF0004CF89 /* HomeView.swift */; };
 		E9193A4D2C3847FD0004CF89 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9193A4C2C3847FD0004CF89 /* ProfileView.swift */; };
 		E93FB2E52C2B70F100CEBA6E /* BankAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FB2E42C2B70F100CEBA6E /* BankAppApp.swift */; };
-		E93FB2E72C2B70F100CEBA6E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FB2E62C2B70F100CEBA6E /* ContentView.swift */; };
 		E93FB2E92C2B70F200CEBA6E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E93FB2E82C2B70F200CEBA6E /* Assets.xcassets */; };
 		E93FB2EC2C2B70F200CEBA6E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E93FB2EB2C2B70F200CEBA6E /* Preview Assets.xcassets */; };
 		E949173B2C344876003BD976 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E949173A2C344876003BD976 /* FirebaseAuth */; };
@@ -34,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		D8816A392C39C0C7008E8276 /* Secret.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Secret.json; sourceTree = "<group>"; };
-		D8816A3B2C39C1AF008E8276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D8816A3D2C39C20E008E8276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E90DBFDB2C359D4F002A3C85 /* loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loading.swift; sourceTree = "<group>"; };
 		E90DBFDD2C35A158002A3C85 /* pedro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pedro.mp4; sourceTree = "<group>"; };
 		E9193A4A2C3847DF0004CF89 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -76,6 +76,7 @@
 			children = (
 				E99DB4432C32DF9700E3A9B9 /* ticker.txt */,
 				E90DBFDD2C35A158002A3C85 /* pedro.mp4 */,
+				D8816A3D2C39C20E008E8276 /* GoogleService-Info.plist */,
 				E952EB0C2C3824FC0051CEA9 /* FireBase.swift */,
 				E90DBFDB2C359D4F002A3C85 /* loading.swift */,
 				E99DB4472C32EFE500E3A9B9 /* yFinanceServer.swift */,
@@ -97,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				E99DB4532C33B65E00E3A9B9 /* Info.plist */,
-				D8816A3B2C39C1AF008E8276 /* GoogleService-Info.plist */,
 				D8816A392C39C0C7008E8276 /* Secret.json */,
 				E93FB2E42C2B70F100CEBA6E /* BankAppApp.swift */,
 				E93FB2E62C2B70F100CEBA6E /* ContentView.swift */,
@@ -194,7 +194,7 @@
 				D8816A3A2C39C0C7008E8276 /* Secret.json in Resources */,
 				E93FB2E92C2B70F200CEBA6E /* Assets.xcassets in Resources */,
 				E99DB4442C32DF9700E3A9B9 /* ticker.txt in Resources */,
-				D8816A3C2C39C1AF008E8276 /* GoogleService-Info.plist in Resources */,
+				D8816A3E2C39C20E008E8276 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +207,7 @@
 			files = (
 				E952EB092C381D190051CEA9 /* TransactionView.swift in Sources */,
 				E952EB0D2C3824FC0051CEA9 /* FireBase.swift in Sources */,
+				D8816A3F2C39C259008E8276 /* ContentView.swift in Sources */,
 				E99DB44A2C32FC7F00E3A9B9 /* SingleStockView.swift in Sources */,
 				E9193A4D2C3847FD0004CF89 /* ProfileView.swift in Sources */,
 				E952EB072C381CE60051CEA9 /* SavingsView.swift in Sources */,
@@ -215,7 +216,6 @@
 				E90DBFDC2C359D4F002A3C85 /* loading.swift in Sources */,
 				E99DB4462C32E2AF00E3A9B9 /* Ticker.swift in Sources */,
 				D8816A382C39C08B008E8276 /* StockView.swift in Sources */,
-				E93FB2E72C2B70F100CEBA6E /* ContentView.swift in Sources */,
 				E93FB2E52C2B70F100CEBA6E /* BankAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
