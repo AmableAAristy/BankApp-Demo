@@ -23,6 +23,10 @@ Main App/GoogleService-Info.plist
 BankingApp/BankingApp.xcodeproj/project.pbxproj
 BankingApp/BankingApp.xcodeproj/project.xcworkspace/contents.xcworkspacedata
 BankingApp/BankingApp.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
-BankingApp/BankingApp.xcodeproj/project.xcworkspace/xcuserdata/
-BankingApp/BankingApp.xcodeproj/xcuserdata/
-BankingApp/BankingApp.xcodeproj/
+BankingApp/BankingApp.xcodeproj/project.xcworkspace/xcuserdata/BankingApp/BankingApp.xcodeproj/xcuserdata/
+
+
+*.xcuserdatad
+*.xcuserdata
+*.xcworkspace/xcuserdata
+*.xcuserstate

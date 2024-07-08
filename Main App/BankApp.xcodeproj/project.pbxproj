@@ -107,7 +107,6 @@
 				E9193A4A2C3847DF0004CF89 /* HomeView.swift */,
 				E952EB062C381CE60051CEA9 /* SavingsView.swift */,
 				E952EB082C381D190051CEA9 /* TransactionView.swift */,
-				D87E58482C39F1FB005FC768 /* SubmitTransactionsView.swift */,
 				E99DB4412C32DF8E00E3A9B9 /* StockView.swift */,
 				E99DB4492C32FC7F00E3A9B9 /* SingleStockView.swift */,
 				E93FB2E82C2B70F200CEBA6E /* Assets.xcassets */,
@@ -208,6 +207,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E99DB4422C32DF8E00E3A9B9 /* StockView.swift in Sources */,
 				E952EB092C381D190051CEA9 /* TransactionView.swift in Sources */,
 				E952EB0D2C3824FC0051CEA9 /* FireBase.swift in Sources */,
 				D8816A3F2C39C259008E8276 /* ContentView.swift in Sources */,
