@@ -30,3 +30,5 @@ BankingApp/BankingApp.xcodeproj/project.xcworkspace/xcuserdata/BankingApp/Bankin
 *.xcuserdata
 *.xcworkspace/xcuserdata
 *.xcuserstate
+
+Main App/Secret.json
