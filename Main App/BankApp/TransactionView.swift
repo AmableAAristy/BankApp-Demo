@@ -27,6 +27,7 @@ struct TransactionView: View {
     let db = Firestore.firestore()
     
     var body: some View {
+        
         NavigationStack{
             VStack{
                 HStack{
