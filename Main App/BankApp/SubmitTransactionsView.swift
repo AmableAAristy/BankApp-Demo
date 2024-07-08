@@ -2,7 +2,7 @@
 //  SubmitTransactionsView.swift
 //  BankApp
 //
-//  Created by Angie Martinez on 7/6/24.
+//  Created by Amable A Aristy  on 7/8/24.
 //
 
 import SwiftUI
