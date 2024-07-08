@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D8332CE52C3CA4DE0098DE03 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8332CE42C3CA4DE0098DE03 /* GoogleService-Info.plist */; };
+		D8332CE72C3CA5B50098DE03 /* TransactionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332CE62C3CA5B50098DE03 /* TransactionInputView.swift */; };
 		D8816A382C39C08B008E8276 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99DB4412C32DF8E00E3A9B9 /* StockView.swift */; };
 		D8816A3F2C39C259008E8276 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FB2E62C2B70F100CEBA6E /* ContentView.swift */; };
 		E90DBFDC2C359D4F002A3C85 /* loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90DBFDB2C359D4F002A3C85 /* loading.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		D8332CE42C3CA4DE0098DE03 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D8332CE62C3CA5B50098DE03 /* TransactionInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInputView.swift; sourceTree = "<group>"; };
 		E90DBFDB2C359D4F002A3C85 /* loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loading.swift; sourceTree = "<group>"; };
 		E90DBFDD2C35A158002A3C85 /* pedro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pedro.mp4; sourceTree = "<group>"; };
 		E9193A4A2C3847DF0004CF89 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				E9193A4A2C3847DF0004CF89 /* HomeView.swift */,
 				E952EB062C381CE60051CEA9 /* SavingsView.swift */,
 				E952EB082C381D190051CEA9 /* TransactionView.swift */,
+				D8332CE62C3CA5B50098DE03 /* TransactionInputView.swift */,
 				E99DB4412C32DF8E00E3A9B9 /* StockView.swift */,
 				E99DB4492C32FC7F00E3A9B9 /* SingleStockView.swift */,
 				E93FB2E82C2B70F200CEBA6E /* Assets.xcassets */,
@@ -214,6 +217,7 @@
 			files = (
 				E952EB092C381D190051CEA9 /* TransactionView.swift in Sources */,
 				E952EB0D2C3824FC0051CEA9 /* FireBase.swift in Sources */,
+				D8332CE72C3CA5B50098DE03 /* TransactionInputView.swift in Sources */,
 				D8816A3F2C39C259008E8276 /* ContentView.swift in Sources */,
 				E99DB44A2C32FC7F00E3A9B9 /* SingleStockView.swift in Sources */,
 				E9193A4D2C3847FD0004CF89 /* ProfileView.swift in Sources */,
