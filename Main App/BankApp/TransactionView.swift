@@ -10,6 +10,7 @@ import Firebase
 import FirebaseFirestoreSwift
 
 struct TransactionView: View {
+    
     @State var company: String = ""
     @State var costString: String = ""
     @State private var transactions: [Transaction] = []
@@ -104,24 +105,18 @@ struct TransactionView: View {
                 
                 // ----------------------------------------------------
                 
-                // keep this to fix it later and make it pretty
-                TextField("Who did you do the transaction with?", text: $company)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("For how much?", text: $costString)
-                    .keyboardType(.decimalPad)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                Button(action: {
-                    addTransaction(company: company, price: cost){
-                        // Clear the input fields
-                        company = ""
-                        costString = ""
-                        fetchTransactions()
+                // Add Transaction button
+                NavigationLink(destination: TransactionInputView(company: $company, costString: $costString) { company, price in
+                        addTransaction(company: company, price: price) {
+                            fetchTransactions()
                     }
                 }) {
-                    Text("Submit Amount")
+                    Text("Add New Transaction")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(10)
                 }
                 .padding()
                 
