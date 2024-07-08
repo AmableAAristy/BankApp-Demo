@@ -9,8 +9,6 @@ class ServerConnection: ObservableObject {
     
     //right now we are only using the both. if we do not end up using any of the other ones we may remove them
     
-    
-    
     private var serverURL: String = ""
        
        init() {
