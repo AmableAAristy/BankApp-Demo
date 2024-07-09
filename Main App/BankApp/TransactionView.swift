@@ -52,7 +52,7 @@ struct TransactionView: View {
                                 .fill(Color.blue)
                                 .frame(width: 48, height: 48)
                             
-                            Image(systemName: "arrow.down.to.line")
+                            Image(systemName: "square.and.arrow.down")
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 24, height: 24)
