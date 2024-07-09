@@ -11,6 +11,7 @@ struct SavingsView: View {
     @StateObject private var viewModel = SavingsViewModel()
     @State private var description = ""
     @State private var amount: String = ""
+    @State private var selectedCategory: Category = .other
     
     var body: some View {
         NavigationView {
@@ -39,60 +40,99 @@ struct SavingsView: View {
                     .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
                     
                     // Add Savings Entry Section
-                    VStack {
-                        HStack {
-                            TextField("Description", text: $description)
-                                .padding()
-                                .background(Color(.secondarySystemBackground))
-                                .cornerRadius(10)
-                            
-                            TextField("Amount", text: $amount)
-                                .keyboardType(.decimalPad)
-                                .padding()
-                                .background(Color(.secondarySystemBackground))
-                                .cornerRadius(10)
-                            
-                            Button(action: {
-                                if let amountValue = Double(amount) {
-                                    viewModel.addSavingsEntry(description: description, amount: amountValue)
-                                    description = ""
-                                    amount = ""
-                                }
-                            }) {
-                                Text("Add")
-                                    .padding()
-                                    .background(Color.blue)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
-                        }
-                    }
-                    .padding()
-                    
-                    // Recent Transactions
                     VStack(alignment: .leading, spacing: 10) {
                         Text("Recent Transactions")
                             .font(.headline)
                             .padding(.leading)
                         
-                        ForEach(viewModel.savingsEntries) { entry in
-                            HStack {
-                                VStack(alignment: .leading) {
-                                    Text(entry.description)
-                                        .font(.headline)
-                                    Text("$\(entry.amount, specifier: "%.2f")")
-                                        .font(.subheadline)
-                                        .foregroundColor(.secondary)
-                                }
-                                Spacer()
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("Description")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                TextField("Description", text: $description)
+                                    .padding()
+                                    .background(Color(.secondarySystemBackground))
+                                    .cornerRadius(10)
                             }
+                            
+                            VStack(alignment: .leading) {
+                                Text("Amount")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                TextField("Amount", text: $amount)
+                                    .keyboardType(.decimalPad)
+                                    .padding()
+                                    .background(Color(.secondarySystemBackground))
+                                    .cornerRadius(10)
+                            }
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Text("Category")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            Picker("Category", selection: $selectedCategory) {
+                                ForEach(Category.allCases) { category in
+                                    Text(category.rawValue).tag(category)
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
                             .padding()
-                            .background(Color(.systemBackground))
+                            .background(Color(.secondarySystemBackground))
                             .cornerRadius(10)
-                            .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                        }
+                        
+                        Button(action: {
+                            if let amountValue = Double(amount) {
+                                viewModel.addSavingsEntry(description: description, amount: amountValue, category: selectedCategory)
+                                description = ""
+                                amount = ""
+                            }
+                        }) {
+                            Text("Add")
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
                         }
                     }
                     .padding()
+                    .background(Color(.systemBackground))
+                    .cornerRadius(10)
+                    .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                    
+                    // Recent Transactions by Category
+                    VStack(alignment: .leading, spacing: 10) {
+                        ForEach(Category.allCases) { category in
+                            if let entries = viewModel.groupedEntries[category], !entries.isEmpty {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text(category.rawValue)
+                                        .font(.headline)
+                                        .padding(.leading)
+                                    
+                                    ForEach(entries) { entry in
+                                        HStack {
+                                            VStack(alignment: .leading) {
+                                                Text(entry.description)
+                                                    .font(.headline)
+                                                Text("$\(entry.amount, specifier: "%.2f")")
+                                                    .font(.subheadline)
+                                                    .foregroundColor(.secondary)
+                                            }
+                                            Spacer()
+                                        }
+                                        .padding()
+                                        .background(Color(.systemBackground))
+                                        .cornerRadius(10)
+                                        .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
+                                    }
+                                }
+                                .padding()
+                            }
+                        }
+                    }
                 }
                 .padding()
             }
