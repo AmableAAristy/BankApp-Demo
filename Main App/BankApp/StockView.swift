@@ -23,6 +23,7 @@ struct StockView: View {
     }
     
     var body: some View {
+        Image ("Stock")
         NavigationStack{
             VStack {
                 HStack{
