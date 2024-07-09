@@ -11,6 +11,7 @@ struct StockView: View {
     
     @State private var stockName: String = ""
     @State private var suggestions: [String] = []
+    @Environment(\.presentationMode) var presentationMode
     
     private let trie = Trie()
     
@@ -50,6 +51,7 @@ struct StockView: View {
                                     .onTapGesture {
                                         stockName = suggestion
                                         suggestions.removeAll()
+                                        presentationMode.wrappedValue.dismiss()
                                     }
                             }
                             .frame(height: 200)
@@ -57,6 +59,7 @@ struct StockView: View {
                     }//end vstack
                     NavigationLink(destination: SingleStockView(stockName: stockName)){
                         Text("Search")
+                        
                     }
                     
                     
