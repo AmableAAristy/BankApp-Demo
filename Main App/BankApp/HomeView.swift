@@ -25,7 +25,6 @@ struct HomeView: View {
     
     var body: some View {
         
-        
         NavigationStack{
             ScrollView{
                 VStack {
