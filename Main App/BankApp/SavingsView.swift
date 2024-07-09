@@ -136,7 +136,7 @@ struct SavingsView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Savings Tracker")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
