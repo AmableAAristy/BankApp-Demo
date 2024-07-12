@@ -13,6 +13,12 @@
 		D8332CEB2C3CD1F80098DE03 /* SavingsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332CEA2C3CD1F80098DE03 /* SavingsEntry.swift */; };
 		D8332CED2C3CD2090098DE03 /* SavingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332CEC2C3CD2090098DE03 /* SavingsViewModel.swift */; };
 		D8332CEF2C3CD3990098DE03 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332CEE2C3CD3990098DE03 /* CircularProgressBar.swift */; };
+		D8332CFF2C40C09D0098DE03 /* MyCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332CFE2C40C09D0098DE03 /* MyCardsView.swift */; };
+		D8332D012C40C0B30098DE03 /* PrivacyAndSecurityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332D002C40C0B30098DE03 /* PrivacyAndSecurityView.swift */; };
+		D8332D032C40C0BC0098DE03 /* CloseAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332D022C40C0BC0098DE03 /* CloseAccountView.swift */; };
+		D8332D052C40C0C60098DE03 /* CustomerSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332D042C40C0C60098DE03 /* CustomerSupportView.swift */; };
+		D8332D072C40C0D60098DE03 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332D062C40C0D60098DE03 /* NotificationsView.swift */; };
+		D8332D092C40C0E50098DE03 /* WithdrawalDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332D082C40C0E50098DE03 /* WithdrawalDetailsView.swift */; };
 		D8816A382C39C08B008E8276 /* StockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99DB4412C32DF8E00E3A9B9 /* StockView.swift */; };
 		D8816A3F2C39C259008E8276 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E93FB2E62C2B70F100CEBA6E /* ContentView.swift */; };
 		E90DBFDC2C359D4F002A3C85 /* loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90DBFDB2C359D4F002A3C85 /* loading.swift */; };
@@ -44,6 +50,12 @@
 		D8332CEA2C3CD1F80098DE03 /* SavingsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsEntry.swift; sourceTree = "<group>"; };
 		D8332CEC2C3CD2090098DE03 /* SavingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsViewModel.swift; sourceTree = "<group>"; };
 		D8332CEE2C3CD3990098DE03 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
+		D8332CFE2C40C09D0098DE03 /* MyCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCardsView.swift; sourceTree = "<group>"; };
+		D8332D002C40C0B30098DE03 /* PrivacyAndSecurityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyAndSecurityView.swift; sourceTree = "<group>"; };
+		D8332D022C40C0BC0098DE03 /* CloseAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseAccountView.swift; sourceTree = "<group>"; };
+		D8332D042C40C0C60098DE03 /* CustomerSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSupportView.swift; sourceTree = "<group>"; };
+		D8332D062C40C0D60098DE03 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		D8332D082C40C0E50098DE03 /* WithdrawalDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalDetailsView.swift; sourceTree = "<group>"; };
 		E90DBFDB2C359D4F002A3C85 /* loading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = loading.swift; sourceTree = "<group>"; };
 		E90DBFDD2C35A158002A3C85 /* pedro.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = pedro.mp4; sourceTree = "<group>"; };
 		E9193A4A2C3847DF0004CF89 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -113,6 +125,12 @@
 				E93FB2E42C2B70F100CEBA6E /* BankAppApp.swift */,
 				E93FB2E62C2B70F100CEBA6E /* ContentView.swift */,
 				E9193A4C2C3847FD0004CF89 /* ProfileView.swift */,
+				D8332CFE2C40C09D0098DE03 /* MyCardsView.swift */,
+				D8332D002C40C0B30098DE03 /* PrivacyAndSecurityView.swift */,
+				D8332D042C40C0C60098DE03 /* CustomerSupportView.swift */,
+				D8332D082C40C0E50098DE03 /* WithdrawalDetailsView.swift */,
+				D8332D022C40C0BC0098DE03 /* CloseAccountView.swift */,
+				D8332D062C40C0D60098DE03 /* NotificationsView.swift */,
 				E95683BE2C3C238400AD2A32 /* SubmitTransactionsView.swift */,
 				E9193A4A2C3847DF0004CF89 /* HomeView.swift */,
 				E952EB062C381CE60051CEA9 /* SavingsView.swift */,
@@ -228,21 +246,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8332CFF2C40C09D0098DE03 /* MyCardsView.swift in Sources */,
 				E952EB092C381D190051CEA9 /* TransactionView.swift in Sources */,
 				E952EB0D2C3824FC0051CEA9 /* FireBase.swift in Sources */,
+				D8332D072C40C0D60098DE03 /* NotificationsView.swift in Sources */,
+				D8332D092C40C0E50098DE03 /* WithdrawalDetailsView.swift in Sources */,
 				D8332CE72C3CA5B50098DE03 /* TransactionInputView.swift in Sources */,
 				D8816A3F2C39C259008E8276 /* ContentView.swift in Sources */,
 				D8332CEB2C3CD1F80098DE03 /* SavingsEntry.swift in Sources */,
 				E99DB44A2C32FC7F00E3A9B9 /* SingleStockView.swift in Sources */,
+				D8332D032C40C0BC0098DE03 /* CloseAccountView.swift in Sources */,
 				E9193A4D2C3847FD0004CF89 /* ProfileView.swift in Sources */,
 				E952EB072C381CE60051CEA9 /* SavingsView.swift in Sources */,
 				D8332CED2C3CD2090098DE03 /* SavingsViewModel.swift in Sources */,
 				E9193A4B2C3847DF0004CF89 /* HomeView.swift in Sources */,
 				E99DB4482C32EFE500E3A9B9 /* yFinanceServer.swift in Sources */,
 				E95683BF2C3C238400AD2A32 /* SubmitTransactionsView.swift in Sources */,
+				D8332D052C40C0C60098DE03 /* CustomerSupportView.swift in Sources */,
 				D8332CEF2C3CD3990098DE03 /* CircularProgressBar.swift in Sources */,
 				E90DBFDC2C359D4F002A3C85 /* loading.swift in Sources */,
 				E99DB4462C32E2AF00E3A9B9 /* Ticker.swift in Sources */,
+				D8332D012C40C0B30098DE03 /* PrivacyAndSecurityView.swift in Sources */,
 				D8816A382C39C08B008E8276 /* StockView.swift in Sources */,
 				E93FB2E52C2B70F100CEBA6E /* BankAppApp.swift in Sources */,
 			);

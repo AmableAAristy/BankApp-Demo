@@ -30,7 +30,7 @@ struct HomeView: View {
                 VStack {
                     // Header
                     HStack {
-                        Image(systemName: "person.fill")
+                        Image(systemName: "person.circle.fill")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 20)
