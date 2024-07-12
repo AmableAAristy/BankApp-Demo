@@ -23,12 +23,27 @@ struct StockView: View {
     }
     
     var body: some View {
-        Image ("Stock")
+        
         NavigationStack{
             VStack {
+                Image ("Stock")
+                Spacer()
                 HStack{
                     
                     VStack{
+                        
+                        if !suggestions.isEmpty {
+                            List(suggestions, id: \.self) { suggestion in
+                                Text(suggestion)
+                                    .onTapGesture {
+                                        stockName = suggestion
+                                        suggestions.removeAll()
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                            }
+                            .frame(height: 200)
+                            
+                        }
                         
                         TextField("Search for symbols!", text: Binding(
                             get: {
@@ -46,25 +61,15 @@ struct StockView: View {
                         }
                         .padding(.horizontal)
                         
-                        if !suggestions.isEmpty {
-                            List(suggestions, id: \.self) { suggestion in
-                                Text(suggestion)
-                                    .onTapGesture {
-                                        stockName = suggestion
-                                        suggestions.removeAll()
-                                        presentationMode.wrappedValue.dismiss()
-                                    }
-                            }
-                            .frame(height: 200)
-                        }
+                        
                     }//end vstack
                     NavigationLink(destination: SingleStockView(stockName: stockName)){
                         Text("Search")
-                        
                     }
                     
                     
                 }//end Hstack
+                Spacer()
                 .padding()
             }//endVstack
         }

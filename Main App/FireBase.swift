@@ -25,3 +25,12 @@ struct Transaction: Codable, Identifiable{
     var price: Double
 }
 
+struct PersonalDetails: Identifiable, Codable{
+    @DocumentID var id: String?
+    let name: String
+    let dob: String
+    let address: String
+    let phone: String //can change this to Int
+    let email: String
+}
+

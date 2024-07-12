@@ -7,25 +7,37 @@
 
 
 import SwiftUI
+import Firebase
+import FirebaseFirestoreSwift
+
+
 
 struct ProfileView: View {
+    
+    @State private var personalDetails:PersonalDetails?
+    let db = Firestore.firestore()
+    let userId = Auth.auth().currentUser?.uid ?? "SKXM8NNBc2SNUGJ7a8it8cVJpL72"
+    
+    
+    
     var body: some View {
         
         NavigationStack{
-            ProfileHeaderView()
+            ProfileHeaderView(personalDetails: personalDetails)
             
             VStack {
                 
                 List {
-                    NavigationLink(destination: PersonalDetailsView()) {
+                    NavigationLink(destination: PersonalDetailsView(personalDetails: personalDetails)) {
                         Label("Personal Details", systemImage: "person.fill")
                     }
                     NavigationLink(destination: MyCardsView()) {
                         Label("My Cards", systemImage: "creditcard.fill")
                     }
-                    NavigationLink(destination: WithdrawalDetailsView()) {
-                        Label("Withdrawal Details", systemImage: "arrow.down.circle.fill")
-                    }
+                    //leaving it as a comment until we all decide to take it out or not
+                    //NavigationLink(destination: WithdrawalDetailsView()) {
+                    //  Label("Withdrawal Details", systemImage: "arrow.down.circle.fill")
+                    //}
                     NavigationLink(destination: NotificationsView()) {
                         Label("Notifications", systemImage: "bell.fill")
                     }
@@ -41,26 +53,51 @@ struct ProfileView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
                 Button(action: {
-                    // Log out action
-                }) {
-                    Text("Log Out")
-                        .foregroundColor(.red)
-                }
-                .padding()
+                    do {
+                        try Auth.auth().signOut()
+                        
+                        print("Logged out successfully.")
+                        //THIS IS BROKEN. YOU NEED TO MAKE IT GO BACK TO LOGINVIEW
+                    } catch let signOutError as NSError {
+                        print("Error signing out: \(signOutError)")
+                    }                }) {
+                        Text("Log Out")
+                            .foregroundColor(.red)
+                    }
+                    .padding()
             }
             .navigationBarHidden(true)
+        }
+        .onAppear(perform: fetchProfileInfo)
+    }
+    func fetchProfileInfo() {
+        
+        db.collection("Accounts").document(userId).collection("UserInfo").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting User History: \(error)")
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                print("No documents found")
+                return
+            }
+            
+            self.personalDetails = snapshot?.documents.first.flatMap { try? $0.data(as: PersonalDetails.self)
+            }
         }
     }
 }
 
 struct ProfileHeaderView: View {
+    let personalDetails: PersonalDetails?
     var body: some View {
         VStack {
             Image(systemName: "person.circle.fill")
                 .resizable()
                 .frame(width: 100, height: 100)
                 .foregroundColor(.gray)
-            Text("John Smith")
+            Text("\(personalDetails?.name ?? "John Doe")")
                 .font(.title)
                 .fontWeight(.bold)
             Spacer().frame(height: 20)
@@ -68,6 +105,7 @@ struct ProfileHeaderView: View {
         .padding()
     }
 }
+
 
 
 #Preview {
