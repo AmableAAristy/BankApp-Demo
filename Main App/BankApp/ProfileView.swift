@@ -13,6 +13,8 @@ import FirebaseFirestoreSwift
 
 
 struct ProfileView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     
     @State private var personalDetails:PersonalDetails?
     let db = Firestore.firestore()
@@ -57,7 +59,7 @@ struct ProfileView: View {
                         try Auth.auth().signOut()
                         
                         print("Logged out successfully.")
-                        //THIS IS BROKEN. YOU NEED TO MAKE IT GO BACK TO LOGINVIEW
+                        presentationMode.wrappedValue.dismiss()
                     } catch let signOutError as NSError {
                         print("Error signing out: \(signOutError)")
                     }                }) {
