@@ -22,7 +22,7 @@ struct BankAppApp: App {
 
         
         WindowGroup {
-            ContentView()
+            LoginView()
         }
     }
 }
