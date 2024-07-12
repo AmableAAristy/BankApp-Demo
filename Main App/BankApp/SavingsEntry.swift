@@ -8,15 +8,15 @@
 import Foundation
 
 // Define a model to represent a savings entry
-struct SavingsEntry: Identifiable {
-    let id = UUID()
+struct SavingsEntry: Codable, Identifiable {
+    var id = UUID()
     let description: String
     let amount: Double
     let category: Category
 }
 
 // Define categories for savings entries
-enum Category: String, CaseIterable, Identifiable {
+enum Category: String, CaseIterable, Identifiable, Codable {
     case foodAndRestaurants = "Food & Restaurants"
     case entertainment = "Entertainment"
     case utilities = "Utilities"

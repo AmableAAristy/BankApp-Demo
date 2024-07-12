@@ -23,9 +23,5 @@ class SavingsViewModel: ObservableObject {
     var groupedEntries: [Category: [SavingsEntry]] {
         Dictionary(grouping: savingsEntries, by: { $0.category })
     }
-    
-    func addSavingsEntry(description: String, amount: Double, category: Category) {
-        let newEntry = SavingsEntry(description: description, amount: amount, category: category)
-        savingsEntries.append(newEntry)
-    }
+
 }
