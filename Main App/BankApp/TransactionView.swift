@@ -14,6 +14,8 @@ struct TransactionView: View {
     @State var company: String = ""
     @State var costString: String = ""
     @State private var transactions: [Transaction] = []
+    let userId = Auth.auth().currentUser?.uid ?? "3445"
+    
     
     var cost: Double {
         get {
@@ -161,10 +163,11 @@ struct TransactionView: View {
     
     func addTransaction(company: String, price: Double, completion: @escaping () -> Void) {
         
+        
         let newTransaction = Transaction(company: company, price: price)
         
         do {
-            let _ = try db.collection("transactions").addDocument(from: newTransaction) { error in
+            let _ = try db.collection("Accounts").document(userId).collection("Transactions").addDocument(from: newTransaction) { error in
                 if let error = error {
                     print("Error writing transaction to Firestore: \(error)")
                 } else {
@@ -176,6 +179,7 @@ struct TransactionView: View {
             print("Error writing transaction to Firestore: \(error)")
         }
     }//end add
+
     func fetchTransactions() {
         
         db.collection("transactions").getDocuments { (snapshot, error) in
