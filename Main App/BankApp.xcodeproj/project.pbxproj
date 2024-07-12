@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+
+		90063D442C3DBB3B0010A561 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 90063D432C3DBB3B0010A561 /* GoogleService-Info.plist */; };
 		D8332CE72C3CA5B50098DE03 /* TransactionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332CE62C3CA5B50098DE03 /* TransactionInputView.swift */; };
 		D8332CE92C3CCF550098DE03 /* Secret.json in Resources */ = {isa = PBXBuildFile; fileRef = D8332CE82C3CCF550098DE03 /* Secret.json */; };
 		D8332CEB2C3CD1F80098DE03 /* SavingsEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8332CEA2C3CD1F80098DE03 /* SavingsEntry.swift */; };
@@ -48,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+
+		90063D432C3DBB3B0010A561 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D8332CE62C3CA5B50098DE03 /* TransactionInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInputView.swift; sourceTree = "<group>"; };
 		D8332CE82C3CCF550098DE03 /* Secret.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Secret.json; sourceTree = "<group>"; };
 		D8332CEA2C3CD1F80098DE03 /* SavingsEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsEntry.swift; sourceTree = "<group>"; };
@@ -106,11 +110,13 @@
 			children = (
 				E99DB4432C32DF9700E3A9B9 /* ticker.txt */,
 				E90DBFDD2C35A158002A3C85 /* pedro.mp4 */,
+
 				E963FFFB2C41590A007EB0E1 /* GoogleService-Info.plist */,
 				E952EB0C2C3824FC0051CEA9 /* FireBase.swift */,
 				E90DBFDB2C359D4F002A3C85 /* loading.swift */,
 				E99DB4472C32EFE500E3A9B9 /* yFinanceServer.swift */,
 				E96300022C415C20007EB0E1 /* Extensions */,
+
 				D8332CE82C3CCF550098DE03 /* Secret.json */,
 				E99DB4452C32E2AF00E3A9B9 /* Ticker.swift */,
 				E93FB2E32C2B70F100CEBA6E /* BankApp */,
@@ -256,6 +262,7 @@
 				E93FB2E92C2B70F200CEBA6E /* Assets.xcassets in Resources */,
 				E99DB4442C32DF9700E3A9B9 /* ticker.txt in Resources */,
 				E963FFFC2C41590A007EB0E1 /* GoogleService-Info.plist in Resources */,
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
