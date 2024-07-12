@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestoreSwift
 
 struct BlankView: View {
+    
+    
+    
     var body: some View {
         Text("This is a blank page")
             .navigationBarTitle("Details", displayMode: .inline)
@@ -15,25 +20,31 @@ struct BlankView: View {
 }
 
 struct PersonalDetailsView: View {
+    
+    let personalDetails:PersonalDetails?
+    let db = Firestore.firestore()
+    let userId = Auth.auth().currentUser?.uid ?? "X5otVt63WoLW2fgE8TiY"
+    
     var body: some View {
+        
         Form {
             Section(header: Text("Personal Information")) {
                 HStack {
                     Text("Full Name")
                     Spacer()
-                    Text("John Samuel Smith")
+                    Text("\(personalDetails?.name ?? "John Doe")")
                         .foregroundColor(.gray)
                 }
                 HStack {
                     Text("Date of Birth")
                     Spacer()
-                    Text("01/17/1998")
+                    Text("\(personalDetails?.dob ?? "01/17/1998")")
                         .foregroundColor(.gray)
                 }
                 HStack {
                     Text("Address")
                     Spacer()
-                    Text("13452 NW 152nd Ave")
+                    Text("\(personalDetails?.address ?? "13452 NW 152nd Ave")")
                         .foregroundColor(.gray)
                         .lineLimit(2)
                         .multilineTextAlignment(.trailing)
@@ -41,23 +52,27 @@ struct PersonalDetailsView: View {
                 HStack {
                     Text("Phone Number")
                     Spacer()
-                    Text("(305) 767-2312")
+                    Text("\(personalDetails?.phone ?? "(305) 767-2312")")
                         .foregroundColor(.gray)
                 }
                 HStack {
                     Text("Email Address")
                     Spacer()
-                    Text("johnsmith@gmail.com")
+                    Text("\(personalDetails?.email  ?? "johnsmith@gmail.com")")
                         .foregroundColor(.gray)
                         .lineLimit(1)
                         .truncationMode(.middle)
                 }
             }
         }
+        
         .navigationBarTitle("Personal Details", displayMode: .inline)
     }
+    
+
 }
 
-#Preview {
-    PersonalDetailsView()
-}
+//#Preview {
+  //  PersonalDetailsView()
+//}
+
