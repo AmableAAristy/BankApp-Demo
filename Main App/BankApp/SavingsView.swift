@@ -6,12 +6,28 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestoreSwift
 
 struct SavingsView: View {
     @StateObject private var viewModel = SavingsViewModel()
     @State private var description = ""
     @State private var amount: String = ""
     @State private var selectedCategory: Category = .other
+    
+    
+    let userId = Auth.auth().currentUser?.uid ?? "3445"
+    let db = Firestore.firestore()
+    
+    var amountDouble: Double {
+        get {
+            Double(amount) ?? 0.00
+        }
+        set {
+            amount = String(newValue)
+        }
+    }
+    
     
     var body: some View {
         NavigationView {
@@ -85,7 +101,7 @@ struct SavingsView: View {
                         
                         Button(action: {
                             if let amountValue = Double(amount) {
-                                viewModel.addSavingsEntry(description: description, amount: amountValue, category: selectedCategory)
+                                addSavingsEntry(description: description, amountDouble: amountDouble, category: selectedCategory)
                                 description = ""
                                 amount = ""
                             }
@@ -137,6 +153,39 @@ struct SavingsView: View {
                 .padding()
             }
             .navigationBarTitleDisplayMode(.inline)
+        }
+    }
+    
+    func addSavingsEntry(description: String, amountDouble: Double, category : Category) {
+        
+        
+        let newSavings = SavingsEntry(description: description, amount: amountDouble, category: category)
+        
+        do {
+            let _ = try db.collection("Accounts").document(userId).collection("Savings").addDocument(from: newSavings) { error in
+                if let error = error {
+                    print("Error writing transaction to Firestore: \(error)")
+                }
+            }
+        } catch let error {
+            print("Error writing transaction to Firestore: \(error)")
+        }
+    }//end add
+    func fetchSavings() {
+        
+        db.collection("Accounts").document(userId).collection("Savings").getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting Savings: \(error)")
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                print("No documents found")
+                return
+            }
+            //make the list
+            //self.transactions = documents.compactMap { (doc) -> Transaction? in
+            //return try? doc.data(as: Transaction.self)
         }
     }
 }
