@@ -14,7 +14,7 @@ struct TransactionView: View {
     @State var company: String = ""
     @State var costString: String = ""
     @State private var transactions: [Transaction] = []
-    let userId = Auth.auth().currentUser?.uid ?? "3445"
+    let userId = Auth.auth().currentUser?.uid ?? "SKXM8NNBc2SNUGJ7a8it8cVJpL72"
     
     
     var cost: Double {
