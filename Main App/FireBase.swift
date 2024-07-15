@@ -19,18 +19,26 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 }
 
 struct Transaction: Codable, Identifiable{
-    @DocumentID var id: String?
+    @DocumentID var id: String? = UUID().uuidString
     
-    var company: String
-    var price: Double
+    let company: String
+    let price: Double
 }
 
 struct PersonalDetails: Identifiable, Codable{
-    @DocumentID var id: String?
+    @DocumentID var id: String? = UUID().uuidString
     let name: String
     let dob: String
     let address: String
     let phone: String //can change this to Int
     let email: String
 }
+
+struct StockTransaction: Identifiable, Codable, Hashable{
+    @DocumentID var id: String? = UUID().uuidString
+    let company: String
+    let purchaseDate: String
+    let price:Double
+}
+
 

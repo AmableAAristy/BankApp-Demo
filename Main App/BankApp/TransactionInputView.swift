@@ -15,8 +15,9 @@ struct TransactionInputView: View {
     var addTransaction: (String, Double) -> Void
     @Environment(\.presentationMode) var presentationMode
     
-    let userId = Auth.auth().currentUser?.uid ?? "3445"
     let db = Firestore.firestore()
+    let userId = Auth.auth().currentUser?.uid ?? "3445"
+    
     
     var body: some View {
         VStack {
