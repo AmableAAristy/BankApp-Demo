@@ -1,10 +1,3 @@
-//
-//  SavingsView.swift
-//  BankApp
-//
-//  Created by Amable A Aristy  on 7/5/24.
-//
-
 import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
@@ -15,10 +8,6 @@ struct SavingsView: View {
     @State private var amount: String = ""
     @State private var selectedCategory: Category = .other
     
-    
-    let userId = Auth.auth().currentUser?.uid ?? "3445"
-    let db = Firestore.firestore()
-    
     var amountDouble: Double {
         get {
             Double(amount) ?? 0.00
@@ -27,7 +16,6 @@ struct SavingsView: View {
             amount = String(newValue)
         }
     }
-    
     
     var body: some View {
         NavigationView {
@@ -43,9 +31,19 @@ struct SavingsView: View {
                         Text("Total Savings: $\(viewModel.totalSavings, specifier: "%.2f")")
                             .font(.title)
                             .fontWeight(.bold)
-                        Text("Savings Goal: $\(viewModel.savingsGoal, specifier: "%.2f")")
-                            .font(.headline)
-                            .foregroundColor(.secondary)
+                        
+                        HStack {
+                            Text("Savings Goal: ")
+                                .font(.headline)
+                                .foregroundColor(.secondary)
+                            TextField("Savings Goal", value: $viewModel.savingsGoal, formatter: NumberFormatter.currency)
+                                .keyboardType(.decimalPad)
+                                .padding()
+                                .background(Color(.secondarySystemBackground))
+                                .cornerRadius(10)
+                                .frame(width: 150)
+                        }
+                        
                         Text("Remaining: $\(max(viewModel.savingsGoal - viewModel.totalSavings, 0), specifier: "%.2f")")
                             .font(.headline)
                             .foregroundColor(viewModel.totalSavings >= viewModel.savingsGoal ? .green : .red)
@@ -57,9 +55,7 @@ struct SavingsView: View {
                     
                     // Add Savings Entry Section
                     VStack(alignment: .leading, spacing: 10) {
-                        Text("Recent Transactions")
-                            .font(.headline)
-                            .padding(.leading)
+
                         
                         HStack {
                             VStack(alignment: .leading) {
@@ -101,7 +97,7 @@ struct SavingsView: View {
                         
                         Button(action: {
                             if let amountValue = Double(amount) {
-                                addSavingsEntry(description: description, amountDouble: amountDouble, category: selectedCategory)
+                                viewModel.addSavingsEntry(description: description, amount: amountValue, category: selectedCategory)
                                 description = ""
                                 amount = ""
                             }
@@ -153,42 +149,13 @@ struct SavingsView: View {
                 .padding()
             }
             .navigationBarTitleDisplayMode(.inline)
-        }
-    }
-    
-    func addSavingsEntry(description: String, amountDouble: Double, category : Category) {
-        
-        
-        let newSavings = SavingsEntry(description: description, amount: amountDouble, category: category)
-        
-        do {
-            let _ = try db.collection("Accounts").document(userId).collection("Savings").addDocument(from: newSavings) { error in
-                if let error = error {
-                    print("Error writing transaction to Firestore: \(error)")
-                }
+            .onAppear {
+                viewModel.fetchSavingsEntries()
             }
-        } catch let error {
-            print("Error writing transaction to Firestore: \(error)")
-        }
-    }//end add
-    func fetchSavings() {
-        
-        db.collection("Accounts").document(userId).collection("Savings").getDocuments { (snapshot, error) in
-            if let error = error {
-                print("Error getting Savings: \(error)")
-                return
-            }
-            
-            guard let documents = snapshot?.documents else {
-                print("No documents found")
-                return
-            }
-            //make the list
-            //self.transactions = documents.compactMap { (doc) -> Transaction? in
-            //return try? doc.data(as: Transaction.self)
         }
     }
 }
+
 
 #Preview {
     SavingsView()
