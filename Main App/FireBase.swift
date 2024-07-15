@@ -23,6 +23,7 @@ struct Transaction: Codable, Identifiable{
     
     let company: String
     let price: Double
+    var timestamp: Timestamp? = Timestamp(date: Date())
 }
 
 struct PersonalDetails: Identifiable, Codable{
@@ -32,6 +33,7 @@ struct PersonalDetails: Identifiable, Codable{
     let address: String
     let phone: String //can change this to Int
     let email: String
+    var timestamp: Timestamp? = Timestamp(date: Date())
 }
 
 struct StockTransaction: Identifiable, Codable, Hashable{
@@ -39,6 +41,29 @@ struct StockTransaction: Identifiable, Codable, Hashable{
     let company: String
     let purchaseDate: String
     let price:Double
+    var timestamp: Timestamp? = Timestamp(date: Date())
 }
+
+struct SavingsEntry: Codable, Identifiable {
+    var id = UUID()
+    let description: String
+    let amount: Double
+    let category: Category
+    var timestamp: Timestamp? = Timestamp(date: Date())
+
+}
+
+// Define categories for savings entries
+enum Category: String, CaseIterable, Identifiable, Codable {
+    case foodAndRestaurants = "Food & Restaurants"
+    case entertainment = "Entertainment"
+    case utilities = "Utilities"
+    case transportation = "Transportation"
+    case shopping = "Shopping"
+    case other = "Other"
+    
+    var id: String { self.rawValue }
+}
+
 
 

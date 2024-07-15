@@ -1,60 +1,82 @@
-//
-//  TransactionInputView.swift
-//  BankApp
-//
-//  Created by Angie Martinez on 7/8/24.
-//
-
 import SwiftUI
 import Firebase
 import FirebaseFirestoreSwift
 
 struct TransactionInputView: View {
-    @Binding var company: String
-    @Binding var costString: String
-    var addTransaction: (String, Double) -> Void
+    @State var company: String = ""
+    @State var costString: String = ""
     @Environment(\.presentationMode) var presentationMode
     
     let db = Firestore.firestore()
     let userId = Auth.auth().currentUser?.uid ?? "SKXM8NNBc2SNUGJ7a8it8cVJpL72"
     
     
+    var isCostValid: Bool {
+        costString.isValidDouble()
+    }
+    
     var body: some View {
         VStack {
             TextField("Who did you do the transaction with?", text: $company)
                 .padding()
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            TextField("For how much?", text: $costString)
-                .keyboardType(.decimalPad)
-                .padding()
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-            
-            Button(action: {
-                if let cost = Double(costString) {
-                    addTransaction(company, cost)
-                    // Clear the input fields
-                    company = ""
-                    costString = ""
-                    presentationMode.wrappedValue.dismiss()
+            HStack{
+                TextField("For how much?", text: $costString)
+                    .keyboardType(.decimalPad)
+                    .padding()
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                if !costString.isEmpty{
+                    Image(systemName: isCostValid ? "checkmark" : "xmark")
+                        .frame(width: 30)
+                        .fontWeight(.bold)
+                        .foregroundColor(isCostValid ? .green : .red)
                 }
-            }) {
-                Text("Submit Amount")
             }
-            .padding()
         }
+        
+        Button(action: {
+            if let cost = Double(costString){
+                addTransaction(company: company, price: cost)
+                company = ""
+                costString = ""
+                presentationMode.wrappedValue.dismiss()
+            } else {
+                
+                print("Invalid cost input")
+            }
+        }) {
+            Text("Submit Amount")
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(isCostValid ? Color.blue : Color.gray)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+        }
+        .disabled(!isCostValid)
         .padding()
     }
+    
+    func addTransaction(company: String, price: Double) {
+        
+        
+        let newTransaction = Transaction(company: company, price: -price, timestamp: Timestamp(date: Date()))
+        
+        do {
+            let _ = try db.collection("Accounts").document(userId).collection("Credit").addDocument(from: newTransaction) { error in
+                if let error = error {
+                    print("Error writing Credit to Firestore: \(error)")
+                }
+            }
+        } catch let error {
+            print("Error writing transaction to Firestore: \(error)")
+        }
+    }//end add
 }
+
 
 #Preview {
-    @State var company = ""
-    @State var costString = ""
+    
     return VStack {
-        TransactionInputView(company: $company, costString: $costString) { company, price in
-            // Sample addTransaction function for preview
-            print("Adding transaction with company: \(company), price: \(price)")
-        }
+        TransactionInputView()
     }
 }
-

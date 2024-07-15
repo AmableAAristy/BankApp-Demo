@@ -80,7 +80,7 @@ struct ProfileView: View {
                 return
             }
             
-            guard let documents = snapshot?.documents else {
+            guard (snapshot?.documents) != nil else {
                 print("No documents found")
                 return
             }
@@ -99,7 +99,7 @@ struct ProfileHeaderView: View {
                 .resizable()
                 .frame(width: 100, height: 100)
                 .foregroundColor(.gray)
-            Text("\(personalDetails?.name ?? "John Doe")")
+            Text("\(personalDetails?.name ?? "")")
                 .font(.title)
                 .fontWeight(.bold)
             Spacer().frame(height: 20)
