@@ -118,7 +118,7 @@ struct SingleStockView: View {
     }
     
     func addStock(company: String, purchaseDate: String, price: Double) {
-        let stockBuy = StockTransaction(company: company, purchaseDate: purchaseDate, price: price)
+        let stockBuy = StockTransaction(company: company, purchaseDate: purchaseDate, price: price, timestamp: Timestamp(date: Date()))
         
         do {
             let _ = try db.collection("Accounts").document(userId).collection("Stocks").addDocument(from: stockBuy) { error in

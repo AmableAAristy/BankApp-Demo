@@ -17,11 +17,15 @@ struct SavingsView: View {
         }
     }
     
+    var isAmountValid: Bool {
+        amount.isValidDouble()
+    }
+    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
-                    // Circular Progress Indicator
+                   
                     CircularProgressBar(progress: viewModel.progress)
                         .frame(width: 150, height: 150)
                         .padding(.top, 20)
@@ -53,9 +57,8 @@ struct SavingsView: View {
                     .cornerRadius(10)
                     .shadow(color: Color.black.opacity(0.1), radius: 5, x: 0, y: 5)
                     
-                    // Add Savings Entry Section
+                    
                     VStack(alignment: .leading, spacing: 10) {
-
                         
                         HStack {
                             VStack(alignment: .leading) {
@@ -96,19 +99,30 @@ struct SavingsView: View {
                         }
                         
                         Button(action: {
-                            if let amountValue = Double(amount) {
+                            if isAmountValid {
+                                let amountValue = Double(amount) ?? 0.00
                                 viewModel.addSavingsEntry(description: description, amount: amountValue, category: selectedCategory)
                                 description = ""
                                 amount = ""
+                            } else {
+                                
+                                print("Invalid amount input")
                             }
                         }) {
-                            Text("Add")
-                                .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
+                            HStack {
+                                Text("Add")
+                                    .frame(maxWidth: .infinity)
+                                    .padding()
+                                    .background(isAmountValid ? Color.blue : Color.gray)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                                Image(systemName: isAmountValid ? "checkmark" : "xmark")
+                                    .frame(width: 30)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(isAmountValid ? .green : .red)
+                            }
                         }
+                        .disabled(!isAmountValid)
                     }
                     .padding()
                     .background(Color(.systemBackground))

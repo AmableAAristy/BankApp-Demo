@@ -23,14 +23,14 @@ class SavingsViewModel: ObservableObject {
     }
     
     func addSavingsEntry(description: String, amount: Double, category: Category) {
-        let newSavings = SavingsEntry(description: description, amount: amount, category: category)
+        let newSavings = SavingsEntry(description: description, amount: amount, category: category, timestamp: Timestamp(date: Date()))
         
         do {
             let _ = try db.collection("Accounts").document(userId).collection("Savings").addDocument(from: newSavings) { error in
                 if let error = error {
                     print("Error writing transaction to Firestore: \(error)")
                 } else {
-                    self.fetchSavingsEntries() // Fetch updated data after adding a new entry
+                    self.fetchSavingsEntries()
                 }
             }
         } catch let error {
@@ -39,7 +39,7 @@ class SavingsViewModel: ObservableObject {
     }
     
     func fetchSavingsEntries() {
-        db.collection("Accounts").document(userId).collection("Savings").getDocuments { snapshot, error in
+        db.collection("Accounts").document(userId).collection("Savings").order(by: "timestamp", descending: true).getDocuments { snapshot, error in
             if let error = error {
                 print("Error getting Savings: \(error)")
                 return

@@ -11,22 +11,10 @@ import FirebaseFirestoreSwift
 
 struct TransactionView: View {
     
-    @State var company: String = ""
-    @State var costString: String = ""
     @State private var transactions: [Transaction] = []
-    let userId = Auth.auth().currentUser?.uid ?? "SKXM8NNBc2SNUGJ7a8it8cVJpL72"
-    
-    
-    var cost: Double {
-        get {
-            Double(costString) ?? 0.00
-        }
-        set {
-            costString = String(newValue)
-        }
-    }
     
     let db = Firestore.firestore()
+    let userId = Auth.auth().currentUser?.uid ?? "SKXM8NNBc2SNUGJ7a8it8cVJpL72"
     
     var body: some View {
         
@@ -109,11 +97,8 @@ struct TransactionView: View {
                 // ----------------------------------------------------
                 
                 // Add Transaction button
-                NavigationLink(destination: TransactionInputView(company: $company, costString: $costString) { company, price in
-                        addTransaction(company: company, price: price) {
-                            fetchTransactions()
-                    }
-                }) {
+                NavigationLink(destination: TransactionInputView()
+                ) {
                     Text("Add New Transaction")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -161,28 +146,11 @@ struct TransactionView: View {
         
     }//end body
     
-    func addTransaction(company: String, price: Double, completion: @escaping () -> Void) {
-        
-        
-        let newTransaction = Transaction(company: company, price: price)
-        
-        do {
-            let _ = try db.collection("Accounts").document(userId).collection("Credit").addDocument(from: newTransaction) { error in
-                if let error = error {
-                    print("Error writing Credit to Firestore: \(error)")
-                } else {
-                    //makes this an async, so app knows to pull after it is succeesfuly put in db
-                    completion()
-                }
-            }
-        } catch let error {
-            print("Error writing transaction to Firestore: \(error)")
-        }
-    }//end add
+
 
     func fetchTransactions() {
         
-        db.collection("Accounts").document(userId).collection("Credit").getDocuments { (snapshot, error) in
+        db.collection("Accounts").document(userId).collection("Credit").order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
             if let error = error {
                 print("Error getting Credit: \(error)")
                 return

@@ -11,8 +11,8 @@ struct HomeView: View {
     @State var savingsBalance: Double = 0.00
     @State var creditBalance: Double = 0.00
     @State var stocksBalance: Double = 0.00
-    @State var userName: String = "John Doe"
-
+    @State var userName: String = ""
+    
     
     var body: some View {
         NavigationStack {
@@ -20,28 +20,34 @@ struct HomeView: View {
                 VStack {
                     // Header
                     HStack {
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 20)
-                            .padding(.trailing, 10)
+                        NavigationLink(destination: ProfileView()){
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 20)
+                                .padding(.trailing, 10)
+                        }
                         
                         Text("Welcome \(userName)!")
                             .font(.title2).bold()
-                            
+                        
                         
                         Spacer()
                         
                         HStack(spacing: 30) {
-                            Image(systemName: "bell.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
+                            NavigationLink(destination: NotificationsView()){
+                                Image(systemName: "bell.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                            }
                             
-                            Image(systemName: "gear")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 20)
+                            NavigationLink(destination: CustomerSupportView()){
+                                Image(systemName: "gear")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                            }
                         }
                     }
                     .padding(.horizontal)
@@ -69,62 +75,62 @@ struct HomeView: View {
                     Spacer().frame(height: 30)
                     
                     // Actions section
-                    HStack(spacing: 30) {
-                        VStack {
-                            ZStack {
-                                Circle()
-                                    .fill(Color.blue)
-                                    .frame(width: 48, height: 48)
-                                
-                                Image(systemName: "square.and.arrow.down")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
-                                    .foregroundColor(.white)
-                            }
-                            
-                            Text("Withdraw")
-                                .font(.caption)
-                                .foregroundColor(.gray)
-                        }
-                        
-                        VStack {
-                            ZStack {
-                                Circle()
-                                    .fill(Color.blue)
-                                    .frame(width: 48, height: 48)
-                                
-                                Image(systemName: "paperplane.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
-                                    .foregroundColor(.white)
-                            }
-                            
-                            Text("Transfer")
-                                .font(.caption)
-                                .foregroundStyle(.gray)
-                        }
-                        
-                        VStack {
-                            ZStack {
-                                Circle()
-                                    .fill(Color.blue)
-                                    .frame(width: 48, height: 48)
-                                
-                                Image(systemName: "creditcard.fill")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 24, height: 24)
-                                    .foregroundColor(.white)
-                            }
-                            
-                            Text("Deposit")
-                                .font(.caption)
-                                .foregroundStyle(.gray)
-                        }
-                    }
-                    .padding()
+//                    HStack(spacing: 30) {
+//                        VStack {
+//                            ZStack {
+//                                Circle()
+//                                    .fill(Color.blue)
+//                                    .frame(width: 48, height: 48)
+//                                
+//                                Image(systemName: "square.and.arrow.down")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 24, height: 24)
+//                                    .foregroundColor(.white)
+//                            }
+//                            
+//                            Text("Withdraw")
+//                                .font(.caption)
+//                                .foregroundColor(.gray)
+//                        }
+//                        
+//                        VStack {
+//                            ZStack {
+//                                Circle()
+//                                    .fill(Color.blue)
+//                                    .frame(width: 48, height: 48)
+//                                
+//                                Image(systemName: "paperplane.fill")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 24, height: 24)
+//                                    .foregroundColor(.white)
+//                            }
+//                            
+//                            Text("Transfer")
+//                                .font(.caption)
+//                                .foregroundStyle(.gray)
+//                        }
+//                        
+//                        VStack {
+//                            ZStack {
+//                                Circle()
+//                                    .fill(Color.blue)
+//                                    .frame(width: 48, height: 48)
+//                                
+//                                Image(systemName: "creditcard.fill")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(width: 24, height: 24)
+//                                    .foregroundColor(.white)
+//                            }
+//                            
+//                            Text("Deposit")
+//                                .font(.caption)
+//                                .foregroundStyle(.gray)
+//                        }
+//                    }
+//                    .padding()
                     
                     // Rectangles with arrows section
                     VStack(spacing: 20) {
@@ -295,6 +301,7 @@ struct HomeView: View {
     private func updateAccountBalance() {
         self.accountBalance = self.savingsBalance + self.creditBalance + self.stocksBalance
     }
+    
 }
 
 #Preview {

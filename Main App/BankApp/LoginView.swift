@@ -64,7 +64,7 @@ struct LoginView: View {
                         
                         Image(systemName: "lock")
                             .foregroundColor(.white)
-                        TextField("Password", text: $password)
+                        SecureField("Password", text: $password)
                             .foregroundColor(.black)
                             .font(.title)
                             .fontWeight(.bold)
@@ -106,7 +106,7 @@ struct LoginView: View {
                                 
                             }
                             
-                            if let authResult = authResult{
+                            if authResult != nil{
                                 isPasswordCorrect = true
                             }
                         }
