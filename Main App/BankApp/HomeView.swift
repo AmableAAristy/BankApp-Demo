@@ -12,6 +12,7 @@ struct HomeView: View {
     @State var creditBalance: Double = 0.00
     @State var stocksBalance: Double = 0.00
     @State var userName: String = "John Doe"
+
     
     var body: some View {
         NavigationStack {
@@ -204,7 +205,7 @@ struct HomeView: View {
         fetchStocksBalance()
         fetchCreditBalance()
         fetchSavingsBalance()
-        // Update account balance after fetching all individual balances
+        // This has to be done async due to it calculating after everything happens
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.accountBalance = self.savingsBalance + self.creditBalance + self.stocksBalance + self.creditBalance
         }

@@ -16,7 +16,7 @@ struct TransactionInputView: View {
     @Environment(\.presentationMode) var presentationMode
     
     let db = Firestore.firestore()
-    let userId = Auth.auth().currentUser?.uid ?? "3445"
+    let userId = Auth.auth().currentUser?.uid ?? "SKXM8NNBc2SNUGJ7a8it8cVJpL72"
     
     
     var body: some View {
