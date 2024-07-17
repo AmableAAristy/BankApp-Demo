@@ -24,60 +24,105 @@ struct NewAccountView: View {
     let db = Firestore.firestore()
     
     var body: some View {
-        VStack {
-            Text("New Account")
-                .font(.largeTitle)
-            Spacer()
-            
-            Group {
-                CustomTextField(imageName: "mail", placeholder: "Email", text: $email, isValid: email.isValidEmail())
-                CustomTextField(imageName: "lock", placeholder: "Password", text: $password, isSecure: true)
-                CustomTextField(imageName: "person", placeholder: "Full Name", text: $name)
-                CustomTextField(imageName: "house", placeholder: "Address", text: $address)
-                CustomTextField(imageName: "phone", placeholder: "Phone", text: $phone, isValid: phone.isValidPhoneNumber())
-                CustomTextField(imageName: "calendar", placeholder: "Date of Birth", text: $dob, isValid: dob.isValidBirthday())
-            }
-            
-            HStack {
-                Spacer()
-                Button(action: {
-                    presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("Cancel")
-                        .foregroundColor(.gray)
-                        .font(.title)
-                }
-                Spacer()
-                Button(action: {
-                    Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
-                        if let error = error {
-                            print("Error: \(error.localizedDescription)")
-                            showErrorAlert.toggle()
-                            errorMessage = error.localizedDescription
-                            return
-                        }
+        ScrollView{
+            Color.white
+                .edgesIgnoringSafeArea(.all)
                         
-                        if let authResult = authResult {
-                            userId = authResult.user.uid
-                            print("User created: \(userId)")
-                            addUserInfo(name: name, dob: dob, address: address, phone: phone, email: email)
+                        VStack(spacing: 5) {
+                            Spacer()
+                            
+                            Text("New Account")
+                                .font(.largeTitle)
+                                .bold()
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                            
+                            /*
+                             .foregroundColor(.white)
+                             .font(.title2)
+                             .bold()
+                             .padding()
+                             .frame(maxWidth: .infinity)
+                             .background(Color.gray)
+                             .cornerRadius(10)
+                             .shadow(radius: 10)
+                             */
+                            
+                            Group {
+                                CustomTextField(imageName: "mail", placeholder: "Email", text: $email, isValid: email.isValidEmail())
+                                    
+                                CustomTextField(imageName: "lock", placeholder: "Password", text: $password, isSecure: true)
+                                
+                                CustomTextField(imageName: "person", placeholder: "Full Name", text: $name)
+                                
+                                CustomTextField(imageName: "house", placeholder: "Address", text: $address)
+                                
+                                CustomTextField(imageName: "phone", placeholder: "Phone", text: $phone, isValid: phone.isValidPhoneNumber())
+                                
+                                CustomTextField(imageName: "calendar", placeholder: "Date of Birth", text: $dob, isValid: dob.isValidBirthday())
+                                    
+                            }
+                            .padding(.horizontal, 10)
+                            
+                            Spacer()
+                            
+                            VStack(spacing: 10) {
+                                // Cancel Button
+                                Button(action: {
+                                    presentationMode.wrappedValue.dismiss()
+                                }) {
+                                    Text("Cancel")
+                                        .foregroundColor(.white)
+                                        .font(.title2)
+                                        .bold()
+                                        .padding()
+                                        .frame(maxWidth: .infinity)
+                                        .background(Color.gray)
+                                        .cornerRadius(10)
+                                        .shadow(radius: 10)
+                                }
+                                
+                                // Create Account Button
+                                Button(action: {
+                                    Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+                                        if let error = error {
+                                            print("Error: \(error.localizedDescription)")
+                                            showErrorAlert.toggle()
+                                            errorMessage = error.localizedDescription
+                                            return
+                                        }
+                                        
+                                        if let authResult = authResult {
+                                            userId = authResult.user.uid
+                                            print("User created: \(userId)")
+                                            addUserInfo(name: name, dob: dob, address: address, phone: phone, email: email)
+                                        }
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                }) {
+                                    Text("Create Account")
+                                        .foregroundColor(.white)
+                                        .font(.title2)
+                                        .bold()
+                                        .padding()
+                                        .frame(maxWidth: .infinity)
+                                        .background(isFormValid ? Color.blue : Color.gray)
+                                        .cornerRadius(10)
+                                        .shadow(radius: 10)
+                                }
+                                .disabled(!isFormValid)
+                                .alert(isPresented: $showErrorAlert) {
+                                    Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+                                }
+                            }
+                            .padding(.horizontal, 30)
+                            
+                            Spacer()
                         }
-                        presentationMode.wrappedValue.dismiss()
+                        .padding()
                     }
-                }) {
-                    Text("Create Account")
-                        .foregroundColor(.gray)
-                        .font(.title)
-                        .alert(isPresented: $showErrorAlert) {
-                            Alert(title: Text(errorMessage))
-                        }
-                }
-                .disabled(!isFormValid)
-                Spacer()
-            }
-            Spacer()
-        }
-    }
+    }//end ScrollView
     
     func addUserInfo(name: String, dob: String, address: String, phone: String, email: String) {
         let newUser = PersonalDetails(name: name, dob: dob, address: address, phone: phone, email: email)

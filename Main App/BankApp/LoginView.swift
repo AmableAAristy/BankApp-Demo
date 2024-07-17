@@ -9,142 +9,112 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     
-    
     var body: some View {
-        
-        NavigationStack{
-            
-            
-            
-            ZStack{
+        NavigationStack {
+            ZStack {
+                Color.white
+                    .edgesIgnoringSafeArea(.all)
                 
-                //Image("LoginBackGround")
-                  //  .resizable()
-                    //.edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-                
-                
-                VStack{
+                VStack(spacing: 20) {
+                    Spacer()
                     
                     Text("Login")
                         .font(.largeTitle)
                         .bold()
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                     
                     Spacer()
-                    Spacer()
                     
-                    //email
-                    HStack{
-                        
-                        Image(systemName: "mail")
-                            .foregroundColor(.white)
-                        TextField("Email", text:$email)
-                            .foregroundColor(.black)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        
-                        
-                        if(email.count != 0){
-                            Image(systemName: email.isValidEmail() ? "checkmark": "xmark")
-                                .frame(width: 30)
-                                .fontWeight(.bold)
-                                .foregroundColor(email.isValidEmail() ?.green : .red)
-                        }
-                        
-                    }
-                    .padding()
-                    .overlay{
-                        RoundedRectangle(cornerRadius: 10)
-                            .stroke(lineWidth: 2)
-                            .foregroundColor(.white)
-                    }.padding()
-                    
-                    //password
-                    HStack{
-                        
-                        Image(systemName: "lock")
-                            .foregroundColor(.white)
-                        SecureField("Password", text: $password)
-                            .foregroundColor(.black)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        
-                    }.padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(lineWidth: 2)
-                                .foregroundColor(.white)
+                    VStack(spacing: 20) {
+                        // Email
+                        HStack {
+                            Image(systemName: "mail")
+                                .foregroundColor(.gray)
+                            TextField("Email", text: $email)
+                                .foregroundColor(.black)
+                                .font(.title2)
+                                .autocapitalization(.none)
                             
-                        ).padding()
+                            if !email.isEmpty {
+                                Image(systemName: email.isValidEmail() ? "checkmark" : "xmark")
+                                    .foregroundColor(email.isValidEmail() ? .green : .red)
+                            }
+                        }
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(10)
+                        
+                        // Password
+                        HStack {
+                            Image(systemName: "lock")
+                                .foregroundColor(.gray)
+                            SecureField("Password", text: $password)
+                                .foregroundColor(.black)
+                                .font(.title2)
+                        }
+                        .padding()
+                        .background(Color.gray.opacity(0.1))
+                        .cornerRadius(10)
+                    }
+                    .padding(.horizontal, 30)
                     
-                    //new account button
+                    Spacer()
                     
+                    // Create Account Button
                     Button(action: {
                         isCreateAccountViewPresented.toggle()
-                    }){
+                    }) {
                         Text("Create Account")
-                    }.foregroundColor(.black)
-                        .font(.title)
-                        .sheet(isPresented: $isCreateAccountViewPresented) {
-                            NewAccountView()
-                        }
+                            .foregroundColor(.blue)
+                            .font(.title2)
+                            .bold()
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(10)
+                    }
+                    .sheet(isPresented: $isCreateAccountViewPresented) {
+                        NewAccountView()
+                    }
+                    .padding(.horizontal, 30)
                     
-                    //spacers
-                    Spacer()
-                    Spacer()
-                    
-                    //login button
+                    // Login Button
                     Button(action: {
-                        
-                        Auth.auth().signIn(withEmail: email, password: password){ authResult, error in
-                            
-                            if let error = error{
+                        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+                            if let error = error {
                                 print(error)
                                 email = ""
                                 password = ""
                                 showErrorAlert.toggle()
-                                
                             }
-                            
-                            if authResult != nil{
+                            if authResult != nil {
                                 isPasswordCorrect = true
                             }
                         }
-                        
-                        
                     }) {
-                        
-                        
                         Text("Login")
                             .foregroundColor(.white)
-                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                            .font(.title2)
                             .bold()
-                            .frame(maxWidth: .infinity)
                             .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/)
-                                    .fill(Color.black)
-                                    .foregroundColor(.black)
-                                    .opacity(0.5)
-                            ).padding(.horizontal)
-                        
-                            .alert(isPresented: $showErrorAlert, content:{
-                                Alert(title: Text("Error login please check mail and password"))
-                            })
-                        
+                            .frame(maxWidth: .infinity)
+                            .background(Color.blue)
+                            .cornerRadius(10)
+                            .shadow(radius: 10)
                     }
-                    .padding()
-                    .padding(.top)
+                    .alert(isPresented: $showErrorAlert) {
+                        Alert(title: Text("Error"), message: Text("Please check your email and password"), dismissButton: .default(Text("OK")))
+                    }
+                    .padding(.horizontal, 30)
                     
-                    
-                    
+                    Spacer()
                 }
+                .padding()
             }
             
-            NavigationLink(destination: ContentView(), isActive: $isPasswordCorrect){
+            NavigationLink(destination: ContentView(), isActive: $isPasswordCorrect) {
                 EmptyView()
             }
-            
         }
     }
 }
