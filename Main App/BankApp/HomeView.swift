@@ -74,64 +74,6 @@ struct HomeView: View {
                     
                     Spacer().frame(height: 30)
                     
-                    // Actions section
-//                    HStack(spacing: 30) {
-//                        VStack {
-//                            ZStack {
-//                                Circle()
-//                                    .fill(Color.blue)
-//                                    .frame(width: 48, height: 48)
-//                                
-//                                Image(systemName: "square.and.arrow.down")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 24, height: 24)
-//                                    .foregroundColor(.white)
-//                            }
-//                            
-//                            Text("Withdraw")
-//                                .font(.caption)
-//                                .foregroundColor(.gray)
-//                        }
-//                        
-//                        VStack {
-//                            ZStack {
-//                                Circle()
-//                                    .fill(Color.blue)
-//                                    .frame(width: 48, height: 48)
-//                                
-//                                Image(systemName: "paperplane.fill")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 24, height: 24)
-//                                    .foregroundColor(.white)
-//                            }
-//                            
-//                            Text("Transfer")
-//                                .font(.caption)
-//                                .foregroundStyle(.gray)
-//                        }
-//                        
-//                        VStack {
-//                            ZStack {
-//                                Circle()
-//                                    .fill(Color.blue)
-//                                    .frame(width: 48, height: 48)
-//                                
-//                                Image(systemName: "creditcard.fill")
-//                                    .resizable()
-//                                    .scaledToFit()
-//                                    .frame(width: 24, height: 24)
-//                                    .foregroundColor(.white)
-//                            }
-//                            
-//                            Text("Deposit")
-//                                .font(.caption)
-//                                .foregroundStyle(.gray)
-//                        }
-//                    }
-//                    .padding()
-                    
                     // Rectangles with arrows section
                     VStack(spacing: 20) {
                         NavigationLink(destination: SavingsView()) {
@@ -213,7 +155,7 @@ struct HomeView: View {
         fetchSavingsBalance()
         // This has to be done async due to it calculating after everything happens
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.accountBalance = self.savingsBalance + self.creditBalance + self.stocksBalance + self.creditBalance
+            self.accountBalance = self.savingsBalance + self.creditBalance + self.stocksBalance
         }
     }
     
